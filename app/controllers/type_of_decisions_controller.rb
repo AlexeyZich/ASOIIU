@@ -1,0 +1,2 @@
+class TypeOfDecisionsController < ApplicationController
+end

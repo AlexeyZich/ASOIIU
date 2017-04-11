@@ -1,0 +1,2 @@
+module TypeOfDecisionsHelper
+end

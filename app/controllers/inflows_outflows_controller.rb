@@ -1,0 +1,2 @@
+class InflowsOutflowsController < ApplicationController
+end
