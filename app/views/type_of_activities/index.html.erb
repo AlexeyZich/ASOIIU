@@ -1,0 +1,8 @@
+<h1>Вид деятельности:</h1>
+<p> 
+  <% @typeofA.each do |typeofA| %>
+  <%= link_to typeofA.name, typeofA %><br><br>
+  <% end %>
+</p>
+<%= link_to 'Новая деятельность', new_type_of_activity_path %>
+ 

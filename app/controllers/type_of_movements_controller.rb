@@ -1,0 +1,2 @@
+class TypeOfMovementsController < ApplicationController
+end

@@ -1,0 +1,2 @@
+class FinancialIndicatorsController < ApplicationController
+end
