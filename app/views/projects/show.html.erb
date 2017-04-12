@@ -1,0 +1,8 @@
+<h1>Название:</h1>
+<p> 
+  <%= @project.name %><br><br>
+  <%= link_to 'Изменить', edit_project_path %>
+  <%= link_to 'Удалить', project_path(@project), method: :delete, data: { confirm: 'Вы уверены?' } %>
+</p>
+<%= link_to 'Назад', projects_path %>
+ 

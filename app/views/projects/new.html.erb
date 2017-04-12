@@ -1,0 +1,15 @@
+<h1>Новый проект</h1>
+
+<%= form_for (@project) do |f| %>
+  <p>
+    <%= f.label :Название %><br>
+    <%= f.text_field :name %>
+    <%= f.label :Валюта %>
+    <%= f.text_field :currency %>
+    <%= f.label :Дата_создания %>
+    <%= f.date_field :date_p %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

@@ -1,0 +1,13 @@
+<h1>Изменение Проекта</h1>
+ 
+<%= form_for (@project) do |f| %>
+  <%= f.label :Название %>
+  <%= f.text_field :name %>
+  <%= f.label :Валюта %>
+  <%= f.text_field :currency %>
+  <%= f.label :Дата_создания %>
+  <%= f.date_field :date_p %>
+  <%= f.submit :Сохранить%>
+<% end %>
+ 
+<%= link_to 'Назад', projects_path %>
