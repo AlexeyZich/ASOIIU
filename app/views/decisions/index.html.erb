@@ -1,0 +1,8 @@
+<h1>Решения:</h1>
+<p> 
+  <% @decision.each do |decision| %>
+  <%= link_to decision.project.name, decision %><br><br>
+  <% end %>
+</p>
+<%= link_to 'Новая деятельность', new_decision_path %>
+ 

@@ -9,6 +9,11 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #
+# Indexes
+#
+#  index_indicator_values_on_indicator_id  (indicator_id)
+#  index_indicator_values_on_project_id    (project_id)
+#
 
 require 'test_helper'
 

@@ -1,0 +1,7 @@
+<h1>Название:</h1>
+<p> 
+  <%= @indicator.project.name %><br><br>
+  <%= link_to 'Изменить', edit_indicator_value_path %>
+  <%= link_to 'Удалить', indicator_value_path(@indicator), method: :delete, data: { confirm: 'Вы уверены?' } %>
+</p>
+<%= link_to 'Назад', indicator_values_path %>

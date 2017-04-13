@@ -1,0 +1,24 @@
+<h1>Новое решение </h1>
+
+<%= form_for (@decision) do |f| %>
+  <p>
+    <%= f.label :Название_проекта %><br>
+    <%= f.collection_select :project_id, Project.all, :id, :name %>
+  </p>
+  <p>
+    <%= f.label :Название_коллегии %><br>
+    <%= f.collection_select :collegial_id, Collegial.all, :id, :name %>
+  </p>
+  <p>
+    <%= f.label :Тип_решения %><br>
+    <%= f.collection_select :type_decision_id, TypeOfDecision.all, :id, :name %>
+  </p>
+  <p>
+    <%= f.label :Дата %><br>
+   <%= f.date_field (:date_d) %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+  <%= link_to 'Назад', decisions_path %>
+<% end %>

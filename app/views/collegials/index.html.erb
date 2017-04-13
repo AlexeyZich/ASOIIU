@@ -1,0 +1,8 @@
+<h1>Коллегии:</h1>
+<p> 
+  <% @collegial.each do |collegial| %>
+  <%= link_to collegial.name, collegial %><br><br>
+  <% end %>
+</p>
+<%= link_to 'Новая деятельность', new_collegial_path %>
+ 

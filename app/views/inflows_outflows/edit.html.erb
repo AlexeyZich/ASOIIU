@@ -1,0 +1,14 @@
+<h1>Изменить</h1>
+<%= form_for (@inflowsoutflow) do |f| %>
+  <%= f.label 'Название проекта' %>
+  <%= f.collection_select :project_id, Project.all, :id, :name %>
+  <%= f.label 'Тип движения' %>
+  <%= f.collection_select :movement_id, TypeOfMovement.all, :id, :name %>
+  <%= f.label :'Сумма' %>
+  <%= f.text_field :total %>
+  <%= f.label :Дата %>
+  <%= f.date_field (:date_f) %>
+  <%= f.submit :Сохранить%>
+<% end %>
+
+<%= link_to 'Назад', inflows_outflow_path %>

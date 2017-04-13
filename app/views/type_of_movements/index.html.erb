@@ -1,0 +1,7 @@
+<h1>Виды движения</h1>
+<p>
+  <% @typeofM.each do |typeofM| %>
+    <%= link_to typeofM.name, typeofM %>
+  <% end %>
+</p>
+<%= link_to 'Новые виды движения', new_type_of_movement_path %>

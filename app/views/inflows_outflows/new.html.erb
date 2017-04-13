@@ -1,0 +1,23 @@
+<h1>Новое притоки/оттоки</h1>
+<%= form_for(@inflowsoutflow) do |f| %>
+  <p>
+    <%= f.label 'Тип движения' %><br>
+    <%= f.collection_select :movement_id, TypeOfMovement.all, :id, :name %>
+  </p>
+  <p>
+    <%= f.label 'Название проекта' %><br>
+    <%= f.collection_select :project_id, Project.all, :id, :name %>
+  </p>
+  <p>
+    <%= f.label :Сумма %><br>
+    <%= f.text_field :total %>
+  </p>
+  <p>
+    <%= f.label :Дата %><br>
+    <%= f.date_field :date_f %>
+  </p>
+  <p>
+    <%= f.submit 'Создать' %>
+  </p>
+  <%= link_to 'Назад', inflows_outflows_path %>
+<% end %>

@@ -1,0 +1,8 @@
+<h1>Притоки/Оттоки</h1>
+<p>
+  <% @inflowsoutflow.each do |inout| %>
+    <%= link_to inout.project.name, inout %>
+  <% end %>
+</p>
+
+<%= link_to 'Новые притоки/оттоки', new_inflows_outflow_path %>

@@ -1,0 +1,9 @@
+<h1>Изменение Типа деятельности</h1>
+ 
+<%= form_for (@f_indicator) do |f| %>
+  <%= f.label 'Номер проекта' %>
+  <%= f.text_field :name %>
+  <%= f.submit 'Сохранить'%>
+<% end %>
+ 
+<%= link_to 'Назад', financial_indicator_path %>

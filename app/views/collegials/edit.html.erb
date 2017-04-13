@@ -1,0 +1,13 @@
+<h1>Изменение Типа деятельности</h1>
+ 
+<%= form_for (@collegial) do |f| %>
+  <%= f.label :Название%>
+  <%= f.text_field :name %>
+  <%= f.label :Адрес%>
+  <%= f.text_field :address %>
+  <%= f.label :Телефон%>
+  <%= f.text_field :phone %>
+  <%= f.submit :Сохранить%>
+<% end %>
+ 
+<%= link_to 'Назад', collegial_path %>
