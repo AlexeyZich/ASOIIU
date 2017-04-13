@@ -1,0 +1,7 @@
+<h1>Значение</h1>
+<p>
+  <% @indicator.each do |indicator| %>
+    <%= link_to indicator.project.name, indicator %>
+  <% end %>
+</p>
+<%= link_to 'Новая деятельность', new_indicator_value_path %>

@@ -1,0 +1,7 @@
+<h1>Притоки/Оттоки:</h1>
+<p> 
+  <%= @inflowsoutflow.project.name %><br><br>
+  <%= link_to 'Изменить', edit_inflows_outflow_path %>
+  <%= link_to 'Удалить', inflows_outflow_path(@inflowsoutflow), method: :delete, data: { confirm: 'Вы уверены?' } %>
+</p>
+<%= link_to 'Назад', inflows_outflows_path %>

@@ -1,0 +1,15 @@
+<h1>Изменение деятельности</h1>
+ 
+<%= form_for (@decision) do |f| %>
+  <%= f.label 'Номер проекта' %>
+  <%= f.collection_select :project_id, Project.all, :id, :name %>
+  <%= f.label 'Номер коллегии' %>
+  <%= f.collection_select :collegial, Collegial.all, :id, :name %>
+  <%= f.label 'Типрешения' %>
+  <%= f.collection_select :type_decision_id, TypeOfDecision.all, :id, :name %>
+  <%= f.label :Дата %>
+  <%= f.date_field (:date_d) %>
+  <%= f.submit :Сохранить%>
+<% end %>
+ 
+<%= link_to 'Назад', decision_path %>

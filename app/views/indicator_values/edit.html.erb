@@ -1,0 +1,12 @@
+<h1>Изменить</h1>
+<%= form_for (@indicator) do |f| %>
+  <%= f.label 'Название проекта' %>
+  <%= f.collection_select :project_id, Project.all, :id, :name %>
+  <%= f.label 'Название финансовго индикатора' %>
+  <%= f.collection_select :indicator_id, FinancialIndicator.all, :id, :name %>
+  <%= f.label :Дата %>
+  <%= f.date_field (:date_i) %>
+  <%= f.submit :Сохранить%>
+<% end %>
+
+<%= link_to 'Назад', indicator_values_path %>

@@ -1,0 +1,10 @@
+<h1>Название:</h1>
+<p> 
+  <%= @decision.project.name %><br><br>
+  <%= @decision.collegial.name %><br><br>
+  <%= @decision.type_decision.name %><br><br>  
+  <%= link_to 'Изменить', edit_decision_path(@decision) %>
+  <%= link_to 'Удалить', decision_path(@decision), method: :delete, data: { confirm: 'Вы уверены?' } %>
+</p>
+<%= link_to 'Назад', decisions_path %>
+ 

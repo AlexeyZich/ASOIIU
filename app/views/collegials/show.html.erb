@@ -1,0 +1,10 @@
+<h1>Название:</h1>
+<p> 
+  <%= @collegial.name %><br><br>
+  <%= @collegial.address %><br><br>
+  <%= @collegial.phone %><br><br>  
+  <%= link_to 'Изменить', edit_collegial_path %>
+  <%= link_to 'Удалить', collegial_path(@collegial), method: :delete, data: { confirm: 'Вы уверены?' } %>
+</p>
+<%= link_to 'Назад', collegials_path %>
+ 

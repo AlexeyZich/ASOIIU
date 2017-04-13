@@ -1,0 +1,10 @@
+<h1>Изменить</h1>
+<%= form_for (@typeofM) do |f| %>
+  <%= f.label :'Название' %>
+  <%= f.text_field :name %>
+  <%= f.label 'Вид деятельности' %>
+  <%= f.collection_select :activity_id, TypeOfActivity.all, :id, :name %>
+  <%= f.submit 'Сохранить' %>
+<% end %>
+
+<%= link_to 'Назад', type_of_movement_path %>

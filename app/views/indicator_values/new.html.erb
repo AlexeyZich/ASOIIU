@@ -1,0 +1,19 @@
+<h1>Новое значение</h1>
+<%= form_for(@indicator) do |f| %>
+  <p>
+    <%= f.label 'Название проекта' %><br>
+    <%= f.collection_select :project_id, Project.all, :id, :name %>
+  </p>
+  <p>
+    <%= f.label 'Финансовый индикатор' %><br>
+    <%= f.collection_select :indicator_id, FinancialIndicator.all, :id, :name %>
+  </p>
+  <p>
+    <%= f.label :Дата %><br>
+    <%= f.date_field :date_i %>
+  </p>
+  <p>
+    <%= f.submit 'Создать' %>
+  </p>
+  <%= link_to 'Назад', indicator_values_path %>
+<% end %>

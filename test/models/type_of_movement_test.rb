@@ -8,6 +8,10 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #
+# Indexes
+#
+#  index_type_of_movements_on_activity_id  (activity_id)
+#
 
 require 'test_helper'
 

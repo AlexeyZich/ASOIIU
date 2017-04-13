@@ -10,6 +10,11 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #
+# Indexes
+#
+#  index_inflows_outflows_on_movement_id  (movement_id)
+#  index_inflows_outflows_on_project_id   (project_id)
+#
 
 class InflowsOutflow < ApplicationRecord
   belongs_to :movement, class_name: "TypeOfMovement"
