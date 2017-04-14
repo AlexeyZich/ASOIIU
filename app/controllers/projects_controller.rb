@@ -1,4 +1,6 @@
 class ProjectsController < ApplicationController
+  before_action :check_user!
+
   def index
     @project = Project.all
   end

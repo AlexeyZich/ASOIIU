@@ -1,5 +1,7 @@
 class IndicatorValuesController < ApplicationController
-   def index
+  before_action :check_user!
+
+  def index
     @indicator = IndicatorValue.all
   end
 

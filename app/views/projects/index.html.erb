@@ -1,10 +1,11 @@
 <h1>Вид деятельности:</h1>
 <p> 
   <% @project.each do |project| %>
-  <%= link_to project.name, project %><br><br>
-  <%= project.currency %><br><br>
-  <%= project.date_p %><br><br>
+    <%= link_to project.name, project %><br><br>
+    <%= project.currency %><br><br>
+    <%= project.date_p %><br><br>
   <% end %>
 </p>
 <%= link_to 'Новая деятельность', new_project_path %>
+
  

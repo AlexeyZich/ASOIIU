@@ -1,4 +1,6 @@
 class InflowsOutflowsController < ApplicationController
+  before_action :check_user!
+
   def index
     @inflowsoutflow = InflowsOutflow.all
   end

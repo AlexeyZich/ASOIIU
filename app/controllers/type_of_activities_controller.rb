@@ -1,4 +1,6 @@
 class TypeOfActivitiesController < ApplicationController
+  before_action :check_user!
+ 
   def index
     @typeofA = TypeOfActivity.all
   end
