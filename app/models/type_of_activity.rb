@@ -9,5 +9,5 @@
 #
 
 class TypeOfActivity < ApplicationRecord
-  has_many :type_of_movements
+  has_many :type_of_movements, foreign_key: 'activity_id'
 end

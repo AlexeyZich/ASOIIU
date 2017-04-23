@@ -1,7 +1,18 @@
 <h1>Значение</h1>
-<p>
+<div class="form-group">
+  <%= link_to 'Новое значение', new_indicator_value_path, class: 'btn btn-primary' %>
+</div>
+<table class="table table-striped">
+  <th>Проект</th>
+  <th>Название финансового показателя</th>
+  <th>Значение</th>
+  <th>Дата</th>
   <% @indicator.each do |indicator| %>
-    <%= link_to indicator.project.name, indicator %>
+    <tr>
+      <td><%= link_to indicator.project.name, indicator %></td>
+      <td><%= link_to indicator.indicator.name, indicator%></td>
+      <td><%= indicator.value %></td>
+      <td><%= indicator.date_i%></td>
+    </tr>
   <% end %>
-</p>
-<%= link_to 'Новая деятельность', new_indicator_value_path %>
+</table>

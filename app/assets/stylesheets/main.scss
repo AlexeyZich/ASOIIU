@@ -1,0 +1,19 @@
+.project-table {
+  .months {
+    .item {
+      display: none;
+
+      &.active {
+        display: block;
+      }
+    }
+  }
+
+  .next {
+
+  }
+
+  .prev {
+
+  }
+} 

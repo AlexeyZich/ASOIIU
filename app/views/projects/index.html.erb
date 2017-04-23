@@ -1,11 +1,17 @@
 <h1>Вид деятельности:</h1>
-<p> 
+<div class="form-group">
+  <%= link_to 'Новая деятельность', new_project_path, class: "btn btn-primary"%>
+</div>
+<table class="table table-striped">
+  <th>Название проекта</th>
+  <th>Валюта</th>
+  <th>Дата создания</th>
   <% @project.each do |project| %>
-    <%= link_to project.name, project %><br><br>
-    <%= project.currency %><br><br>
-    <%= project.date_p %><br><br>
+      <tr>
+        <td><%= link_to project.name, project %></td>
+        <td><%= project.currency %></td>
+        <td><%= project.date_p %></td>
+      </tr>
   <% end %>
-</p>
-<%= link_to 'Новая деятельность', new_project_path %>
-
+</table>
  

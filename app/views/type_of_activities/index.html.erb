@@ -1,8 +1,19 @@
 <h1>Вид деятельности:</h1>
-<p> 
+<div class="form-group">
+  <%= link_to 'Новая деятельность', new_type_of_activity_path, class: "btn btn-primary"%>
+</div>
   <% @typeofA.each do |typeofA| %>
-  <%= link_to typeofA.name, typeofA %><br><br>
+    <table class="table table-striped">
+    <th>
+      <%= link_to typeofA.name, typeofA %>
+    </th>
+    <tr>
+      <td>
+        <% typeofA.type_of_movements.each do |typeofM| %>
+          <%= typeofM.name %>
+        <% end %>
+        </td>
+    </tr>
   <% end %>
-</p>
-<%= link_to 'Новая деятельность', new_type_of_activity_path %>
+</table>
  

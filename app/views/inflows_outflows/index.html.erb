@@ -1,8 +1,17 @@
 <h1>Притоки/Оттоки</h1>
-<p>
   <% @inflowsoutflow.each do |inout| %>
-    <%= link_to inout.project.name, inout %>
-  <% end %>
-</p>
+  <table class="table table-striped">
+    <th>Вид движения</th>
+    <th>Название проекта</th>
+    <th>Сумма</th>
+    <th>Дата выдачи</th>
+      <tr>
+        <td><%= link_to inout.project.name, inout %></td>
+        <td><%= inout.movement.name %></td>
+        <td><%= inout.total %></td>
+        <td><%= inout.date_f%></td>
+        <% end %>
+      </tr>
+  </table>
 
 <%= link_to 'Новые притоки/оттоки', new_inflows_outflow_path %>

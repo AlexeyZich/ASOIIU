@@ -5,6 +5,7 @@
 #  id           :integer          not null, primary key
 #  project_id   :integer
 #  indicator_id :integer
+#  value        :string
 #  date_i       :date
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null

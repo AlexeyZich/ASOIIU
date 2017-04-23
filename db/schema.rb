@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(version: 20170414140756) do
   create_table "indicator_values", force: :cascade do |t|
     t.integer  "project_id"
     t.integer  "indicator_id"
+    t.string   "value"
     t.date     "date_i"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false

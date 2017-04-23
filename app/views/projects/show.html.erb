@@ -1,8 +1,51 @@
 <h1>Название:</h1>
-<p> 
-  <%= @project.name %><br><br>
-  <%= link_to 'Изменить', edit_project_path %>
-  <%= link_to 'Удалить', project_path(@project), method: :delete, data: { confirm: 'Вы уверены?' } %>
-</p>
+<%= @project.name %>
+
+<% date = @project.date_p  %>  
+<% dates = (date..(date.months_since(6))).map{|d| [Russian::strftime(d, "%B %Y"), d.month, d.year] }.uniq %>
+
+<div class="project-table">
+  <div class="months">
+    <% dates.each_with_index do |month_array, i| %>
+      <% month_label = month_array[0] %>
+      <% month = month_array[1] %>
+      <% year = month_array[2] %>
+      <div data-month="<%= month %>" data-year="<%= year %>" class="item <%= ( i == 0 ? 'active' : '')  %>">
+        <h3 class="text-center"><%= month_label %></h3>
+        <div>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Название деятельности</th>
+                <th>Название второй колонки</th>
+                <th>Название третей колонки</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @project.inflows_outflows.each do |inout| %>
+                <tr>
+                  <td>
+                    <%= inout&.movement&.activity&.name %>
+                  </td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td><%= inout.movement.name %></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <a class="prev" href="javascript:">Prev</a>
+  <a class="next" href="javascript:">Next</a>
+</div>
+
 <%= link_to 'Назад', projects_path %>
- 
+<%= link_to 'Изменить', edit_project_path %>
+<%= link_to 'Удалить', project_path(@project), method: :delete, data: { confirm: 'Вы уверены?' } %>

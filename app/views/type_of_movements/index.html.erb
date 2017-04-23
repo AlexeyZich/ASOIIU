@@ -1,7 +1,15 @@
 <h1>Виды движения</h1>
-<p>
+<div calss="form-group">
+  <%= link_to 'Новые виды движения', new_type_of_movement_path %>
+</div>
   <% @typeofM.each do |typeofM| %>
-    <%= link_to typeofM.name, typeofM %>
+    <table class="table table-striped">
+      <th>
+        <%= link_to typeofM.name, typeofM %>
+      </th>
+      <tr>
+        <td>
+          <%= typeofM.activity.name %>
+        </td>
+      </tr>
   <% end %>
-</p>
-<%= link_to 'Новые виды движения', new_type_of_movement_path %>

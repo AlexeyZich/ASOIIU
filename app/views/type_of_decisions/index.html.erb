@@ -1,8 +1,12 @@
 <h1>Типы решений:</h1>
-<p> 
+<div class="form-group">
+  <%= link_to 'Новый тип решения', new_type_of_decision_path, class: 'btn btn-primary' %>
+</div>
+<table class="table table-striped"> 
   <% @typeofD.each do |decision| %>
-  <%= link_to decision.name, decision %><br><br>
+    <tr>
+      <td><%= link_to decision.name, decision %></td>
+    </tr>
   <% end %>
-</p>
-<%= link_to 'Новый тип решения', new_type_of_decision_path %>
+</table>
  

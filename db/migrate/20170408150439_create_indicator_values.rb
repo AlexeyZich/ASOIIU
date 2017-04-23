@@ -3,6 +3,7 @@ class CreateIndicatorValues < ActiveRecord::Migration[5.0]
     create_table :indicator_values do |t|
       t.integer :project_id
       t.integer :indicator_id
+      t.string :value
       t.date :date_i
 
       t.timestamps
