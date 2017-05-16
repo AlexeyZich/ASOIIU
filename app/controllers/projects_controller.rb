@@ -7,10 +7,13 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
+    @activities = TypeOfActivity.all
+    @inflowsoutflow = InflowsOutflow.new
   end
 
   def new
     @project = Project.new
+    @inflowsoutflow = InflowsOutflow.new
   end
 
   def edit

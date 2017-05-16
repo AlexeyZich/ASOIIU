@@ -1,12 +1,11 @@
 <h1>Вид деятельности:</h1>
-<div class="form-group">
-  <%= link_to 'Новая деятельность', new_type_of_activity_path, class: "btn btn-primary"%>
-</div>
   <% @typeofA.each do |typeofA| %>
     <table class="table table-striped">
-    <th>
-      <%= link_to typeofA.name, typeofA %>
-    </th>
+    <tr>
+      <th>
+        <%= typeofA.name %>
+      </th>
+    </tr>
     <tr>
       <td>
         <% typeofA.type_of_movements.each do |typeofM| %>

@@ -9,6 +9,7 @@
 #  date_f      :date
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  name        :string
 #
 # Indexes
 #

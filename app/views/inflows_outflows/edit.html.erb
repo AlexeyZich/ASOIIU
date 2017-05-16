@@ -1,13 +1,15 @@
 <h1>Изменить</h1>
 <%= form_for (@inflowsoutflow) do |f| %>
-  <%= f.label 'Название проекта' %>
-  <%= f.collection_select :project_id, Project.all, :id, :name %>
-  <%= f.label 'Тип движения' %>
-  <%= f.collection_select :movement_id, TypeOfMovement.all, :id, :name %>
-  <%= f.label :'Сумма' %>
-  <%= f.text_field :total %>
-  <%= f.label :Дата %>
-  <%= f.date_field (:date_f) %>
+  <%= f.label 'Название притока или оттока'%><br>
+  <%= f.text_field :name %><br><br>
+  <%= f.label 'Название проекта' %><br>
+  <%= f.collection_select :project_id, Project.all, :id, :name %><br><br>
+  <%= f.label 'Тип движения' %><br>
+  <%= f.collection_select :movement_id, TypeOfMovement.all, :id, :name %><br><br>
+  <%= f.label :'Сумма' %><br>
+  <%= f.text_field :total %><br><br>
+  <%= f.label :Дата %><br>
+  <%= f.date_field (:date_f) %><br><br>
   <%= f.submit :Сохранить%>
 <% end %>
 

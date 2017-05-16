@@ -1,8 +1,0 @@
-<h1>Название:</h1>
-<p> 
-  <%= @f_indicator.name %><br><br>
-  <%= link_to 'Изменить', edit_financial_indicator_path %>
-  <%= link_to 'Удалить', financial_indicator_path(@f_indicator), method: :delete, data: { confirm: 'Вы уверены?' } %>
-</p>
-<%= link_to 'Назад', financial_indicators_path %>
- 

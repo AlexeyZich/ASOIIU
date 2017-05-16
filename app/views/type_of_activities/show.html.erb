@@ -1,8 +1,0 @@
-<h1>Название:</h1>
-<p> 
-  <%= @typeofA.name %><br><br>
-  <%= link_to 'Изменить', edit_type_of_activity_path %>
-  <%= link_to 'Удалить', type_of_activity_path(@typeofA), method: :delete, data: { confirm: 'Вы уверены?' } %>
-</p>
-<%= link_to 'Назад', type_of_activities_path %>
- 

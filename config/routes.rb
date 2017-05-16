@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :financial_indicators
   resources :indicator_values
   resources :inflows_outflows
+  post 'inflows_outflows/export'
   resources :type_of_decisions
 
   root 'welcome#index'

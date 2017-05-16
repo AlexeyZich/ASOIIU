@@ -1,10 +1,7 @@
 <h1>Финансовый показатель:</h1>
-<div class="form-group">
-  <%= link_to 'Новый финансовый показатель', new_financial_indicator_path, class: 'btn btn-primary' %>
-</div>
 <p> 
   <% @f_indicator.each do |indicator| %>
-  <%= link_to indicator.name, indicator %><br><br>
+    <%= indicator.name %><br><br>
   <% end %>
 </p>
  
