@@ -1,8 +1,18 @@
 <h1>Вид деятельности:</h1>
-<p> 
   <% @typeofA.each do |typeofA| %>
-  <%= link_to typeofA.name, typeofA %><br><br>
+    <table class="table table-striped">
+    <tr>
+      <th>
+        <%= typeofA.name %>
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <% typeofA.type_of_movements.each do |typeofM| %>
+          <%= typeofM.name %>
+        <% end %>
+        </td>
+    </tr>
   <% end %>
-</p>
-<%= link_to 'Новая деятельность', new_type_of_activity_path %>
+</table>
  

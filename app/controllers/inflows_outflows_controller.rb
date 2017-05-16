@@ -1,4 +1,6 @@
 class InflowsOutflowsController < ApplicationController
+  before_action :check_user!
+
   def index
     @inflowsoutflow = InflowsOutflow.all
   end
@@ -19,7 +21,7 @@ class InflowsOutflowsController < ApplicationController
     @inflowsoutflow = InflowsOutflow.new(inflowsoutflow_params)
     @inflowsoutflow.save
 
-    redirect_to @inflowsoutflow
+    redirect_to project_path(@inflowsoutflow.project)
   end
 
   def update
@@ -27,22 +29,32 @@ class InflowsOutflowsController < ApplicationController
     @inflowsoutflow.assign_attributes(inflowsoutflow_params)
     if @inflowsoutflow.save
       flash[:success] = "Изменения сохранены."
-      render :show
+      respond_to do |format|
+        format.html { render :show }
+        format.json { render :json => { total: @inflowsoutflow.total } }
+      end
     else
       flash[:error] = "Ошибка! Изменения не сохранены"
-      render :show
+      respond_to do |format|
+        format.html { render :show }
+        format.json { render :json => { total: @inflowsoutflow.total }, status: 400 }
+      end
     end
+  end
+
+  def export
+    puts "test test test "
   end
 
   def destroy
     @inflowsoutflow = InflowsOutflow.find(params[:id])
     @inflowsoutflow.destroy
 
-    redirect_to inflowsoutflows_path
+    redirect_to inflows_outflows_path
   end
 
   private
   def inflowsoutflow_params
-    params.require(:inflows_outflow).permit(:movement_id, :project_id, :total, :date_f)
+    params.require(:inflows_outflow).permit(:movement_id, :name, :project_id, :total, :date_f)
   end
 end

@@ -1,4 +1,7 @@
 class CollegialsController < ApplicationController
+  before_action :check_user!
+
+
   def index
     @collegial = Collegial.all
   end

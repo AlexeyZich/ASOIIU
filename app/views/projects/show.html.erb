@@ -1,8 +1,128 @@
-<h1>Название:</h1>
-<p> 
-  <%= @project.name %><br><br>
-  <%= link_to 'Изменить', edit_project_path %>
-  <%= link_to 'Удалить', project_path(@project), method: :delete, data: { confirm: 'Вы уверены?' } %>
-</p>
+<h1>Проект <%= @project.name %>:</h1>
+<div>
+  <h3 class="text-center">
+    <%= @project.name %>
+  </h3>
+</div>
+
+<% date = @project.date_p  %>  
+<% dates = (date..(date.months_since(6))).map{|d| [Russian::strftime(d, "%B %Y"), d.month, d.year] }.uniq %>
+
+<% grouped_data = @project.inflows_outflows.group_by { |inout| [inout.movement, inout.movement.activity, inout.date_f.month, inout.date_f.year] } %>
+
+    <table class="table table-striped table-bordered">
+      <thead>
+        <th>Старт <%= @project.date_p %> </th>
+          <% dates.each_with_index do |month_array, i| %>
+            <% month_label = month_array[0] %>
+              <th><%= month_label %></th>
+          <% end %>
+      </thead>
+      <tbody>
+        <% @activities.each do |activity| %>
+            <tr>
+              <td><b><%= activity.name %></b></td>  
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <% activity.type_of_movements.order(name: 'DESC').each do |movement| %>
+              <tr >
+                <% check_movement = movement %>
+                <td class="text-underline newinout" data-month="<%= dates.first[1] %>" data-year="<%= dates.first[2] %>" data-project-id="<%= @project.id %>" data-movement-id="<%= movement.id %>"><i><%= movement.name %></i></td>
+                
+                <% dates.each_with_index do |month_array, i| %>
+                  <% month = month_array[1] %>
+                  <% year = month_array[2] %>
+                  <% grouped_data_filtered = grouped_data.select { |movement_activity_month, inouts| movement_activity_month[1] == activity }.select { |movement_activity_month, inouts| movement_activity_month[0] == movement } %>
+                  
+                  <% if grouped_data_filtered.present? %>
+                    <% result = grouped_data_filtered.find { |movement_activity_month, inouts| movement_activity_month[2] == month && movement_activity_month[3] == year } %>
+                    <td class="sum-movement" data-month="<%= month %>" data-year="<%= year %>" data-activity-id="<%= activity.id %>" data-movement-id="<%= movement.id %>"><%= result && result[1].sum(&:total) %></td>
+                  <% else %>
+                    <td></td>
+                  <% end %>
+                <% end %>
+              </tr>
+              <% movement.inflows_outflows.where(project: @project).order(name: "DESC").group_by(&:name).each do |inout_name, inouts| %>
+                <tr>
+                  <td><%= inout_name %></td>
+                  <% dates.each_with_index do |month_array, i| %>
+                    <% month = month_array[1] %>
+                    <% year = month_array[2] %>
+
+                    <% if inouts.pluck(:date_f).map { |d| [d.month, d.year] }.include?([month, year]) %>
+                      <% inout = inouts.select {|i| i.date_f.month == month && i.date_f.year == year }.first %>
+                      <td id="column-total" data-month="<%= month %>" data-year="<%= year %>" data-activity-id="<%= movement.activity.id %>" data-movement-id="<%= movement.id %>"><%= best_in_place inout, :total %></td>
+                    <% else %>
+                      <td class="yearmonth" data-name="<%= inout_name %>" data-movement-id="<%= movement.id %>" data-project-id="<%= @project.id %>" data-month="<%= month %>" data-year="<%= year %>"></td>
+                    <% end %>
+                    <% if false %>
+                      <% if inout.date_f.month == month && inout.date_f.year == year %>
+                        <td id="column-total" data-month="<%= month %>" data-year="<%= year %>" data-activity-id="<%= movement.activity.id %>" data-movement-id="<%= movement.id %>"><%= best_in_place inout, :total %></td>
+                      <% else %>
+                        <%# best_in_place InflowsOutflow.new(movement: movement, project: @project, date_f: DateTime.new(year, month, 1), name: inout.name), :total %>
+                        <td class="yearmonth" data-toggle="modal" data-name="<%= inout.name %>" data-movement-id="<%= movement.id %>" data-project-id="<%= @project.id %>" data-month="<%= month %>" data-year="<%= year %>"></td>
+                      <% end %>
+                    <% end %>
+                  <% end %>
+                </tr>
+              <% end %>
+            <% end %>
+        <% end %>
+      </tbody>
+    </table>
+    <div>
+      <% snpv = [] %>
+      <% inf = [] %>
+      <% out = [] %>
+      <% @activities.each do |activity| %>
+        <% summ = [] %>
+        <% activity.type_of_movements.where("name LIKE ?", "Притоки").each do |movement| %>
+          <% dates.each_with_index do |month_array, i| %>
+            <% month = month_array[1] %>
+            <% year = month_array[2] %>
+            <% grouped_data_filtered = grouped_data.select { |movement_activity_month, inouts| movement_activity_month[1] == activity }.select { |movement_activity_month, inouts| movement_activity_month[0] == movement } %>
+            <% if grouped_data_filtered.present? %>
+              <% result = grouped_data_filtered.find { |movement_activity_month, inouts| movement_activity_month[2] == month && movement_activity_month[3] == year } %>
+              <% summ << (result && (result[1].sum(&:total))) %>
+              
+            <% end %>
+          <% end %>
+          <%# summ.delete_if(&:nil?).sum %>
+          <% summ.delete_if(&:nil?).each do |s| %>
+            <% inf << s %>
+          <% end %>
+        <% end %>
+
+        <% activity.type_of_movements.where("name LIKE ?", "Оттоки").each do |movement| %>
+          <% tmp = [] %>
+          <% dates.each_with_index do |month_array, i| %>
+            <% month = month_array[1] %>
+            <% year = month_array[2] %>
+            <% grouped_data_filtered = grouped_data.select { |movement_activity_month, inouts| movement_activity_month[1] == activity }.select { |movement_activity_month, inouts| movement_activity_month[0] == movement } %>
+            
+            <% if grouped_data_filtered.present? %>
+              <% result = grouped_data_filtered.find { |movement_activity_month, inouts| movement_activity_month[2] == month && movement_activity_month[3] == year } %>
+              <% tmp << (result && (result[1].sum(&:total))) %>
+            <% end %>
+          <% end %>
+          <%# snpv << summ.delete_if(&:nil?).sum + tmp.delete_if(&:nil?).sum %>
+          <% tmp.delete_if(&:nil?).each do |t| %>
+            <% out << t %>
+          <% end %>
+        <% end %>
+
+      <% end %>
+      NPV:
+      <% i_count = [inf.count, out.count].max  %>
+      <%= i_count.times.map { |i| (((inf[i] || 0) - (out[i] || 0)) / (1 + 0.1) ** i).round(2) }.sum %>
+      <br/>
+    </div>
 <%= link_to 'Назад', projects_path %>
- 
+<%= link_to 'Изменить', edit_project_path %>
+<%= link_to 'Удалить', project_path(@project), method: :delete, data: { confirm: 'Вы уверены?' } %>

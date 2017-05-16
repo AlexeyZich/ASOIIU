@@ -1,8 +1,17 @@
-<h1>Коллегии:</h1>
-<p> 
+<h1>Коллегиальный орган:</h1>
+<div>
+  <%= link_to 'Новый', new_collegial_path, class: 'btn btn-primary' %>
+</div>
+<table class="table table-striped">
+  <th>Название</th>
+  <th>Адрес</th>
+  <th>Номер телефона</th>  
   <% @collegial.each do |collegial| %>
-  <%= link_to collegial.name, collegial %><br><br>
+    <tr>
+        <td><%= link_to collegial.name, collegial %></td>
+        <td><%= collegial.address %></td>
+        <td><%= collegial.phone %></td>        
+    </tr>
   <% end %>
-</p>
-<%= link_to 'Новая деятельность', new_collegial_path %>
+</table>
  

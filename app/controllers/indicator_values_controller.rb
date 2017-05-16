@@ -1,5 +1,7 @@
 class IndicatorValuesController < ApplicationController
-   def index
+  before_action :check_user!
+
+  def index
     @indicator = IndicatorValue.all
   end
 
@@ -43,6 +45,6 @@ class IndicatorValuesController < ApplicationController
 
   private
   def indicator_params
-    params.require(:indicator_value).permit(:project_id, :indicator_id, :date_i)
+    params.require(:indicator_value).permit(:project_id, :indicator_id, :date_i, :value)
   end
 end

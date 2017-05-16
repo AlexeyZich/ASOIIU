@@ -1,4 +1,6 @@
 class TypeOfDecisionsController < ApplicationController
+  before_action :check_user!
+
   def index
     @typeofD = TypeOfDecision.all
   end

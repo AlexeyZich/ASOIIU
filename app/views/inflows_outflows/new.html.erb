@@ -2,7 +2,11 @@
 <%= form_for(@inflowsoutflow) do |f| %>
   <p>
     <%= f.label 'Тип движения' %><br>
-    <%= f.collection_select :movement_id, TypeOfMovement.all, :id, :name %>
+    <%= f.collection_select :movement_id, TypeOfMovement.all, :id, Proc.new {|m| [m.activity.name, m.name].join(' - ') } %>
+  </p>
+  <p>
+    <%= f.label :'Название' %><br>
+    <%= f.text_field :name %>
   </p>
   <p>
     <%= f.label 'Название проекта' %><br>

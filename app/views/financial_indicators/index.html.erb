@@ -1,8 +1,7 @@
-<h1>Решения:</h1>
+<h1>Финансовый показатель:</h1>
 <p> 
   <% @f_indicator.each do |indicator| %>
-  <%= link_to indicator.name, indicator %><br><br>
+    <%= indicator.name %><br><br>
   <% end %>
 </p>
-<%= link_to 'Новая деятельность', new_financial_indicator_path %>
  

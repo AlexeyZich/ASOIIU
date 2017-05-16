@@ -1,8 +1,9 @@
 <h1>Типы решений:</h1>
-<p> 
+<table class="table table-striped"> 
   <% @typeofD.each do |decision| %>
-  <%= link_to decision.name, decision %><br><br>
+    <tr>
+      <td><%= decision.name %></td>
+    </tr>
   <% end %>
-</p>
-<%= link_to 'Новый тип решения', new_type_of_decision_path %>
+</table>
  

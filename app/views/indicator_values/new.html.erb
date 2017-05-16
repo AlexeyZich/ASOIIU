@@ -9,6 +9,10 @@
     <%= f.collection_select :indicator_id, FinancialIndicator.all, :id, :name %>
   </p>
   <p>
+    <%= f.label :Значение %><br>
+    <%= f.text_field :value %>
+  </p>
+  <p>
     <%= f.label :Дата %><br>
     <%= f.date_field :date_i %>
   </p>

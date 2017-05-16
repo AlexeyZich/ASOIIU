@@ -1,8 +1,17 @@
 <h1>Решения:</h1>
-<p> 
+<div class="form-group">
+  <%= link_to 'Новая деятельность', new_decision_path %>
+</div>
+<table class="table table-striped">
+  <th>Название проекта</th>
+  <th>Коллегиальный орган</th>
+  <th>Тип решения</th>
   <% @decision.each do |decision| %>
-  <%= link_to decision.project.name, decision %><br><br>
+    <tr>
+      <td><%= link_to decision.project.name, decision %></td>
+      <td><%= link_to decision.collegial.name, decision %></td>
+      <td><%= link_to decision.type_decision.name, decision %></td>
+    </tr>
   <% end %>
-</p>
-<%= link_to 'Новая деятельность', new_decision_path %>
+</table>
  

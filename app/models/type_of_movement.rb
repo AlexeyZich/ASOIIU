@@ -15,5 +15,5 @@
 
 class TypeOfMovement < ApplicationRecord
   belongs_to :activity, class_name: "TypeOfActivity"
-  has_many :inflows_outflows
+  has_many :inflows_outflows, foreign_key: 'movement_id'
 end

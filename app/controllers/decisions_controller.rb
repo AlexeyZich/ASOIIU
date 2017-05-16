@@ -1,4 +1,6 @@
 class DecisionsController < ApplicationController
+  before_action :check_user!
+
   def index
     @decision = Decision.all
   end
